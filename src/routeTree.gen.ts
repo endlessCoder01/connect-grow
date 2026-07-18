@@ -9,38 +9,201 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedTestimoniesRouteImport } from './routes/_authenticated/testimonies'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedPrayerRouteImport } from './routes/_authenticated/prayer'
+import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
+import { Route as AuthenticatedCommunityRouteImport } from './routes/_authenticated/community'
+import { Route as AuthenticatedBibleRouteImport } from './routes/_authenticated/bible'
+import { Route as AuthenticatedTestimoniesNewRouteImport } from './routes/_authenticated/testimonies.new'
+import { Route as AuthenticatedPrayerNewRouteImport } from './routes/_authenticated/prayer.new'
+import { Route as AuthenticatedCommunityNewRouteImport } from './routes/_authenticated/community.new'
+import { Route as AuthenticatedCommunitySlugRouteImport } from './routes/_authenticated/community.$slug'
 
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedTestimoniesRoute =
+  AuthenticatedTestimoniesRouteImport.update({
+    id: '/testimonies',
+    path: '/testimonies',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPrayerRoute = AuthenticatedPrayerRouteImport.update({
+  id: '/prayer',
+  path: '/prayer',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCommunityRoute = AuthenticatedCommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedBibleRoute = AuthenticatedBibleRouteImport.update({
+  id: '/bible',
+  path: '/bible',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTestimoniesNewRoute =
+  AuthenticatedTestimoniesNewRouteImport.update({
+    id: '/new',
+    path: '/new',
+    getParentRoute: () => AuthenticatedTestimoniesRoute,
+  } as any)
+const AuthenticatedPrayerNewRoute = AuthenticatedPrayerNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AuthenticatedPrayerRoute,
+} as any)
+const AuthenticatedCommunityNewRoute =
+  AuthenticatedCommunityNewRouteImport.update({
+    id: '/new',
+    path: '/new',
+    getParentRoute: () => AuthenticatedCommunityRoute,
+  } as any)
+const AuthenticatedCommunitySlugRoute =
+  AuthenticatedCommunitySlugRouteImport.update({
+    id: '/$slug',
+    path: '/$slug',
+    getParentRoute: () => AuthenticatedCommunityRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/bible': typeof AuthenticatedBibleRoute
+  '/community': typeof AuthenticatedCommunityRouteWithChildren
+  '/home': typeof AuthenticatedHomeRoute
+  '/prayer': typeof AuthenticatedPrayerRouteWithChildren
+  '/profile': typeof AuthenticatedProfileRoute
+  '/testimonies': typeof AuthenticatedTestimoniesRouteWithChildren
+  '/community/$slug': typeof AuthenticatedCommunitySlugRoute
+  '/community/new': typeof AuthenticatedCommunityNewRoute
+  '/prayer/new': typeof AuthenticatedPrayerNewRoute
+  '/testimonies/new': typeof AuthenticatedTestimoniesNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/bible': typeof AuthenticatedBibleRoute
+  '/community': typeof AuthenticatedCommunityRouteWithChildren
+  '/home': typeof AuthenticatedHomeRoute
+  '/prayer': typeof AuthenticatedPrayerRouteWithChildren
+  '/profile': typeof AuthenticatedProfileRoute
+  '/testimonies': typeof AuthenticatedTestimoniesRouteWithChildren
+  '/community/$slug': typeof AuthenticatedCommunitySlugRoute
+  '/community/new': typeof AuthenticatedCommunityNewRoute
+  '/prayer/new': typeof AuthenticatedPrayerNewRoute
+  '/testimonies/new': typeof AuthenticatedTestimoniesNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/bible': typeof AuthenticatedBibleRoute
+  '/_authenticated/community': typeof AuthenticatedCommunityRouteWithChildren
+  '/_authenticated/home': typeof AuthenticatedHomeRoute
+  '/_authenticated/prayer': typeof AuthenticatedPrayerRouteWithChildren
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/testimonies': typeof AuthenticatedTestimoniesRouteWithChildren
+  '/_authenticated/community/$slug': typeof AuthenticatedCommunitySlugRoute
+  '/_authenticated/community/new': typeof AuthenticatedCommunityNewRoute
+  '/_authenticated/prayer/new': typeof AuthenticatedPrayerNewRoute
+  '/_authenticated/testimonies/new': typeof AuthenticatedTestimoniesNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/bible'
+    | '/community'
+    | '/home'
+    | '/prayer'
+    | '/profile'
+    | '/testimonies'
+    | '/community/$slug'
+    | '/community/new'
+    | '/prayer/new'
+    | '/testimonies/new'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/bible'
+    | '/community'
+    | '/home'
+    | '/prayer'
+    | '/profile'
+    | '/testimonies'
+    | '/community/$slug'
+    | '/community/new'
+    | '/prayer/new'
+    | '/testimonies/new'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/bible'
+    | '/_authenticated/community'
+    | '/_authenticated/home'
+    | '/_authenticated/prayer'
+    | '/_authenticated/profile'
+    | '/_authenticated/testimonies'
+    | '/_authenticated/community/$slug'
+    | '/_authenticated/community/new'
+    | '/_authenticated/prayer/new'
+    | '/_authenticated/testimonies/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +211,146 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/testimonies': {
+      id: '/_authenticated/testimonies'
+      path: '/testimonies'
+      fullPath: '/testimonies'
+      preLoaderRoute: typeof AuthenticatedTestimoniesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/prayer': {
+      id: '/_authenticated/prayer'
+      path: '/prayer'
+      fullPath: '/prayer'
+      preLoaderRoute: typeof AuthenticatedPrayerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/home': {
+      id: '/_authenticated/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof AuthenticatedHomeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/community': {
+      id: '/_authenticated/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof AuthenticatedCommunityRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/bible': {
+      id: '/_authenticated/bible'
+      path: '/bible'
+      fullPath: '/bible'
+      preLoaderRoute: typeof AuthenticatedBibleRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/testimonies/new': {
+      id: '/_authenticated/testimonies/new'
+      path: '/new'
+      fullPath: '/testimonies/new'
+      preLoaderRoute: typeof AuthenticatedTestimoniesNewRouteImport
+      parentRoute: typeof AuthenticatedTestimoniesRoute
+    }
+    '/_authenticated/prayer/new': {
+      id: '/_authenticated/prayer/new'
+      path: '/new'
+      fullPath: '/prayer/new'
+      preLoaderRoute: typeof AuthenticatedPrayerNewRouteImport
+      parentRoute: typeof AuthenticatedPrayerRoute
+    }
+    '/_authenticated/community/new': {
+      id: '/_authenticated/community/new'
+      path: '/new'
+      fullPath: '/community/new'
+      preLoaderRoute: typeof AuthenticatedCommunityNewRouteImport
+      parentRoute: typeof AuthenticatedCommunityRoute
+    }
+    '/_authenticated/community/$slug': {
+      id: '/_authenticated/community/$slug'
+      path: '/$slug'
+      fullPath: '/community/$slug'
+      preLoaderRoute: typeof AuthenticatedCommunitySlugRouteImport
+      parentRoute: typeof AuthenticatedCommunityRoute
+    }
   }
 }
 
+interface AuthenticatedCommunityRouteChildren {
+  AuthenticatedCommunitySlugRoute: typeof AuthenticatedCommunitySlugRoute
+  AuthenticatedCommunityNewRoute: typeof AuthenticatedCommunityNewRoute
+}
+
+const AuthenticatedCommunityRouteChildren: AuthenticatedCommunityRouteChildren =
+  {
+    AuthenticatedCommunitySlugRoute: AuthenticatedCommunitySlugRoute,
+    AuthenticatedCommunityNewRoute: AuthenticatedCommunityNewRoute,
+  }
+
+const AuthenticatedCommunityRouteWithChildren =
+  AuthenticatedCommunityRoute._addFileChildren(
+    AuthenticatedCommunityRouteChildren,
+  )
+
+interface AuthenticatedPrayerRouteChildren {
+  AuthenticatedPrayerNewRoute: typeof AuthenticatedPrayerNewRoute
+}
+
+const AuthenticatedPrayerRouteChildren: AuthenticatedPrayerRouteChildren = {
+  AuthenticatedPrayerNewRoute: AuthenticatedPrayerNewRoute,
+}
+
+const AuthenticatedPrayerRouteWithChildren =
+  AuthenticatedPrayerRoute._addFileChildren(AuthenticatedPrayerRouteChildren)
+
+interface AuthenticatedTestimoniesRouteChildren {
+  AuthenticatedTestimoniesNewRoute: typeof AuthenticatedTestimoniesNewRoute
+}
+
+const AuthenticatedTestimoniesRouteChildren: AuthenticatedTestimoniesRouteChildren =
+  {
+    AuthenticatedTestimoniesNewRoute: AuthenticatedTestimoniesNewRoute,
+  }
+
+const AuthenticatedTestimoniesRouteWithChildren =
+  AuthenticatedTestimoniesRoute._addFileChildren(
+    AuthenticatedTestimoniesRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedBibleRoute: typeof AuthenticatedBibleRoute
+  AuthenticatedCommunityRoute: typeof AuthenticatedCommunityRouteWithChildren
+  AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  AuthenticatedPrayerRoute: typeof AuthenticatedPrayerRouteWithChildren
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedTestimoniesRoute: typeof AuthenticatedTestimoniesRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedBibleRoute: AuthenticatedBibleRoute,
+  AuthenticatedCommunityRoute: AuthenticatedCommunityRouteWithChildren,
+  AuthenticatedHomeRoute: AuthenticatedHomeRoute,
+  AuthenticatedPrayerRoute: AuthenticatedPrayerRouteWithChildren,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedTestimoniesRoute: AuthenticatedTestimoniesRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
