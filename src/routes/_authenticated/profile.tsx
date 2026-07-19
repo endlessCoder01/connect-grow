@@ -10,7 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
-import { LogOut, Loader2, User } from "lucide-react";
+import { LogOut, Loader2, User, Shield } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const meQuery = queryOptions({
   queryKey: ["me-profile"],
@@ -122,7 +123,11 @@ function ProfileForm() {
         </Button>
       </form>
 
-      <Button variant="outline" onClick={signOut} className="mt-8 h-12 w-full gap-2 text-destructive">
+      <Button asChild variant="outline" className="mt-8 h-12 w-full gap-2">
+        <Link to="/admin"><Shield className="h-4 w-4" /> Moderation (admins)</Link>
+      </Button>
+
+      <Button variant="outline" onClick={signOut} className="mt-3 h-12 w-full gap-2 text-destructive">
         <LogOut className="h-4 w-4" /> Sign out
       </Button>
 
