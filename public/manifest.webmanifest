@@ -1,0 +1,12 @@
+{
+  "name": "Bible Connect",
+  "short_name": "Bible Connect",
+  "description": "Connect, Grow, Worship — Scripture, community, prayer, and testimony.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf6ed",
+  "theme_color": "#3a3568",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "48x48", "type": "image/x-icon" }
+  ]
+}
