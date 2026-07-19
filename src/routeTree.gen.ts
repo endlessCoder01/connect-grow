@@ -16,12 +16,18 @@ import { Route as AuthenticatedTestimoniesRouteImport } from './routes/_authenti
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedPrayerRouteImport } from './routes/_authenticated/prayer'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
+import { Route as AuthenticatedForumRouteImport } from './routes/_authenticated/forum'
 import { Route as AuthenticatedCommunityRouteImport } from './routes/_authenticated/community'
+import { Route as AuthenticatedCalendarRouteImport } from './routes/_authenticated/calendar'
 import { Route as AuthenticatedBibleRouteImport } from './routes/_authenticated/bible'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedTestimoniesNewRouteImport } from './routes/_authenticated/testimonies.new'
 import { Route as AuthenticatedPrayerNewRouteImport } from './routes/_authenticated/prayer.new'
+import { Route as AuthenticatedForumNewRouteImport } from './routes/_authenticated/forum.new'
+import { Route as AuthenticatedForumPostIdRouteImport } from './routes/_authenticated/forum.$postId'
 import { Route as AuthenticatedCommunityNewRouteImport } from './routes/_authenticated/community.new'
 import { Route as AuthenticatedCommunitySlugRouteImport } from './routes/_authenticated/community.$slug'
+import { Route as AuthenticatedCalendarNewRouteImport } from './routes/_authenticated/calendar.new'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -58,14 +64,29 @@ const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
   path: '/home',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedForumRoute = AuthenticatedForumRouteImport.update({
+  id: '/forum',
+  path: '/forum',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedCommunityRoute = AuthenticatedCommunityRouteImport.update({
   id: '/community',
   path: '/community',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedCalendarRoute = AuthenticatedCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedBibleRoute = AuthenticatedBibleRouteImport.update({
   id: '/bible',
   path: '/bible',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedTestimoniesNewRoute =
@@ -79,6 +100,17 @@ const AuthenticatedPrayerNewRoute = AuthenticatedPrayerNewRouteImport.update({
   path: '/new',
   getParentRoute: () => AuthenticatedPrayerRoute,
 } as any)
+const AuthenticatedForumNewRoute = AuthenticatedForumNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AuthenticatedForumRoute,
+} as any)
+const AuthenticatedForumPostIdRoute =
+  AuthenticatedForumPostIdRouteImport.update({
+    id: '/$postId',
+    path: '/$postId',
+    getParentRoute: () => AuthenticatedForumRoute,
+  } as any)
 const AuthenticatedCommunityNewRoute =
   AuthenticatedCommunityNewRouteImport.update({
     id: '/new',
@@ -91,32 +123,50 @@ const AuthenticatedCommunitySlugRoute =
     path: '/$slug',
     getParentRoute: () => AuthenticatedCommunityRoute,
   } as any)
+const AuthenticatedCalendarNewRoute =
+  AuthenticatedCalendarNewRouteImport.update({
+    id: '/new',
+    path: '/new',
+    getParentRoute: () => AuthenticatedCalendarRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/bible': typeof AuthenticatedBibleRoute
+  '/calendar': typeof AuthenticatedCalendarRouteWithChildren
   '/community': typeof AuthenticatedCommunityRouteWithChildren
+  '/forum': typeof AuthenticatedForumRouteWithChildren
   '/home': typeof AuthenticatedHomeRoute
   '/prayer': typeof AuthenticatedPrayerRouteWithChildren
   '/profile': typeof AuthenticatedProfileRoute
   '/testimonies': typeof AuthenticatedTestimoniesRouteWithChildren
+  '/calendar/new': typeof AuthenticatedCalendarNewRoute
   '/community/$slug': typeof AuthenticatedCommunitySlugRoute
   '/community/new': typeof AuthenticatedCommunityNewRoute
+  '/forum/$postId': typeof AuthenticatedForumPostIdRoute
+  '/forum/new': typeof AuthenticatedForumNewRoute
   '/prayer/new': typeof AuthenticatedPrayerNewRoute
   '/testimonies/new': typeof AuthenticatedTestimoniesNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/bible': typeof AuthenticatedBibleRoute
+  '/calendar': typeof AuthenticatedCalendarRouteWithChildren
   '/community': typeof AuthenticatedCommunityRouteWithChildren
+  '/forum': typeof AuthenticatedForumRouteWithChildren
   '/home': typeof AuthenticatedHomeRoute
   '/prayer': typeof AuthenticatedPrayerRouteWithChildren
   '/profile': typeof AuthenticatedProfileRoute
   '/testimonies': typeof AuthenticatedTestimoniesRouteWithChildren
+  '/calendar/new': typeof AuthenticatedCalendarNewRoute
   '/community/$slug': typeof AuthenticatedCommunitySlugRoute
   '/community/new': typeof AuthenticatedCommunityNewRoute
+  '/forum/$postId': typeof AuthenticatedForumPostIdRoute
+  '/forum/new': typeof AuthenticatedForumNewRoute
   '/prayer/new': typeof AuthenticatedPrayerNewRoute
   '/testimonies/new': typeof AuthenticatedTestimoniesNewRoute
 }
@@ -125,14 +175,20 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/bible': typeof AuthenticatedBibleRoute
+  '/_authenticated/calendar': typeof AuthenticatedCalendarRouteWithChildren
   '/_authenticated/community': typeof AuthenticatedCommunityRouteWithChildren
+  '/_authenticated/forum': typeof AuthenticatedForumRouteWithChildren
   '/_authenticated/home': typeof AuthenticatedHomeRoute
   '/_authenticated/prayer': typeof AuthenticatedPrayerRouteWithChildren
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/testimonies': typeof AuthenticatedTestimoniesRouteWithChildren
+  '/_authenticated/calendar/new': typeof AuthenticatedCalendarNewRoute
   '/_authenticated/community/$slug': typeof AuthenticatedCommunitySlugRoute
   '/_authenticated/community/new': typeof AuthenticatedCommunityNewRoute
+  '/_authenticated/forum/$postId': typeof AuthenticatedForumPostIdRoute
+  '/_authenticated/forum/new': typeof AuthenticatedForumNewRoute
   '/_authenticated/prayer/new': typeof AuthenticatedPrayerNewRoute
   '/_authenticated/testimonies/new': typeof AuthenticatedTestimoniesNewRoute
 }
@@ -141,28 +197,40 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/admin'
     | '/bible'
+    | '/calendar'
     | '/community'
+    | '/forum'
     | '/home'
     | '/prayer'
     | '/profile'
     | '/testimonies'
+    | '/calendar/new'
     | '/community/$slug'
     | '/community/new'
+    | '/forum/$postId'
+    | '/forum/new'
     | '/prayer/new'
     | '/testimonies/new'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
+    | '/admin'
     | '/bible'
+    | '/calendar'
     | '/community'
+    | '/forum'
     | '/home'
     | '/prayer'
     | '/profile'
     | '/testimonies'
+    | '/calendar/new'
     | '/community/$slug'
     | '/community/new'
+    | '/forum/$postId'
+    | '/forum/new'
     | '/prayer/new'
     | '/testimonies/new'
   id:
@@ -170,14 +238,20 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/admin'
     | '/_authenticated/bible'
+    | '/_authenticated/calendar'
     | '/_authenticated/community'
+    | '/_authenticated/forum'
     | '/_authenticated/home'
     | '/_authenticated/prayer'
     | '/_authenticated/profile'
     | '/_authenticated/testimonies'
+    | '/_authenticated/calendar/new'
     | '/_authenticated/community/$slug'
     | '/_authenticated/community/new'
+    | '/_authenticated/forum/$postId'
+    | '/_authenticated/forum/new'
     | '/_authenticated/prayer/new'
     | '/_authenticated/testimonies/new'
   fileRoutesById: FileRoutesById
@@ -239,6 +313,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHomeRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/forum': {
+      id: '/_authenticated/forum'
+      path: '/forum'
+      fullPath: '/forum'
+      preLoaderRoute: typeof AuthenticatedForumRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/community': {
       id: '/_authenticated/community'
       path: '/community'
@@ -246,11 +327,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCommunityRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/calendar': {
+      id: '/_authenticated/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof AuthenticatedCalendarRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/bible': {
       id: '/_authenticated/bible'
       path: '/bible'
       fullPath: '/bible'
       preLoaderRoute: typeof AuthenticatedBibleRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/testimonies/new': {
@@ -267,6 +362,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPrayerNewRouteImport
       parentRoute: typeof AuthenticatedPrayerRoute
     }
+    '/_authenticated/forum/new': {
+      id: '/_authenticated/forum/new'
+      path: '/new'
+      fullPath: '/forum/new'
+      preLoaderRoute: typeof AuthenticatedForumNewRouteImport
+      parentRoute: typeof AuthenticatedForumRoute
+    }
+    '/_authenticated/forum/$postId': {
+      id: '/_authenticated/forum/$postId'
+      path: '/$postId'
+      fullPath: '/forum/$postId'
+      preLoaderRoute: typeof AuthenticatedForumPostIdRouteImport
+      parentRoute: typeof AuthenticatedForumRoute
+    }
     '/_authenticated/community/new': {
       id: '/_authenticated/community/new'
       path: '/new'
@@ -281,8 +390,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCommunitySlugRouteImport
       parentRoute: typeof AuthenticatedCommunityRoute
     }
+    '/_authenticated/calendar/new': {
+      id: '/_authenticated/calendar/new'
+      path: '/new'
+      fullPath: '/calendar/new'
+      preLoaderRoute: typeof AuthenticatedCalendarNewRouteImport
+      parentRoute: typeof AuthenticatedCalendarRoute
+    }
   }
 }
+
+interface AuthenticatedCalendarRouteChildren {
+  AuthenticatedCalendarNewRoute: typeof AuthenticatedCalendarNewRoute
+}
+
+const AuthenticatedCalendarRouteChildren: AuthenticatedCalendarRouteChildren = {
+  AuthenticatedCalendarNewRoute: AuthenticatedCalendarNewRoute,
+}
+
+const AuthenticatedCalendarRouteWithChildren =
+  AuthenticatedCalendarRoute._addFileChildren(
+    AuthenticatedCalendarRouteChildren,
+  )
 
 interface AuthenticatedCommunityRouteChildren {
   AuthenticatedCommunitySlugRoute: typeof AuthenticatedCommunitySlugRoute
@@ -299,6 +428,19 @@ const AuthenticatedCommunityRouteWithChildren =
   AuthenticatedCommunityRoute._addFileChildren(
     AuthenticatedCommunityRouteChildren,
   )
+
+interface AuthenticatedForumRouteChildren {
+  AuthenticatedForumPostIdRoute: typeof AuthenticatedForumPostIdRoute
+  AuthenticatedForumNewRoute: typeof AuthenticatedForumNewRoute
+}
+
+const AuthenticatedForumRouteChildren: AuthenticatedForumRouteChildren = {
+  AuthenticatedForumPostIdRoute: AuthenticatedForumPostIdRoute,
+  AuthenticatedForumNewRoute: AuthenticatedForumNewRoute,
+}
+
+const AuthenticatedForumRouteWithChildren =
+  AuthenticatedForumRoute._addFileChildren(AuthenticatedForumRouteChildren)
 
 interface AuthenticatedPrayerRouteChildren {
   AuthenticatedPrayerNewRoute: typeof AuthenticatedPrayerNewRoute
@@ -326,8 +468,11 @@ const AuthenticatedTestimoniesRouteWithChildren =
   )
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedBibleRoute: typeof AuthenticatedBibleRoute
+  AuthenticatedCalendarRoute: typeof AuthenticatedCalendarRouteWithChildren
   AuthenticatedCommunityRoute: typeof AuthenticatedCommunityRouteWithChildren
+  AuthenticatedForumRoute: typeof AuthenticatedForumRouteWithChildren
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
   AuthenticatedPrayerRoute: typeof AuthenticatedPrayerRouteWithChildren
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
@@ -335,8 +480,11 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedBibleRoute: AuthenticatedBibleRoute,
+  AuthenticatedCalendarRoute: AuthenticatedCalendarRouteWithChildren,
   AuthenticatedCommunityRoute: AuthenticatedCommunityRouteWithChildren,
+  AuthenticatedForumRoute: AuthenticatedForumRouteWithChildren,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
   AuthenticatedPrayerRoute: AuthenticatedPrayerRouteWithChildren,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,

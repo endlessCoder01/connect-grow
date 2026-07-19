@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { PageHeader } from "@/components/PageHeader";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Heart, MessageCircle, Users } from "lucide-react";
+import { Heart, MessageCircle, Users, MessageSquare, CalendarDays } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
 const verseQuery = queryOptions({
@@ -70,6 +70,22 @@ function HomePage() {
       <Suspense fallback={<VerseSkeleton />}>
         <VerseOfDay />
       </Suspense>
+      <div className="mt-6 grid grid-cols-2 gap-3 px-5">
+        <Link to="/forum" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition hover:border-primary/40">
+          <MessageSquare className="h-5 w-5 text-primary" />
+          <div>
+            <div className="text-sm font-semibold">Discussion</div>
+            <div className="text-xs text-muted-foreground">Ask & encourage</div>
+          </div>
+        </Link>
+        <Link to="/calendar" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition hover:border-primary/40">
+          <CalendarDays className="h-5 w-5 text-primary" />
+          <div>
+            <div className="text-sm font-semibold">Calendar</div>
+            <div className="text-xs text-muted-foreground">Upcoming events</div>
+          </div>
+        </Link>
+      </div>
       <Suspense fallback={<div className="px-5"><Skeleton className="h-40 w-full" /></div>}>
         <Feed />
       </Suspense>
