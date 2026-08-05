@@ -7,6 +7,7 @@ CREATE TABLE public.profiles (
   display_name TEXT,
   avatar_url TEXT,
   bio TEXT,
+  coins_balance INTEGER NOT NULL DEFAULT 0,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );

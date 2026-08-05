@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
-import { LogOut, Loader2, User, Shield } from "lucide-react";
+import { Coins, CreditCard, LogOut, Loader2, User, Shield } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 const meQuery = queryOptions({
@@ -20,10 +20,15 @@ const meQuery = queryOptions({
     if (!userData.user) throw new Error("Not signed in");
     const { data: profile } = await supabase
       .from("profiles")
-      .select("id, display_name, avatar_url, bio")
+      .select("id, display_name, avatar_url, bio, coins_balance")
       .eq("id", userData.user.id)
       .maybeSingle();
-    return { user: userData.user, profile: profile ?? { id: userData.user.id, display_name: null, avatar_url: null, bio: null } };
+    return {
+      user: userData.user,
+      profile:
+        profile ??
+        { id: userData.user.id, display_name: null, avatar_url: null, bio: null, coins_balance: 0 },
+    };
   },
 });
 
@@ -95,6 +100,30 @@ function ProfileForm() {
           <div className="truncate font-semibold">{data.profile.display_name ?? "Friend"}</div>
           <div className="truncate text-xs text-muted-foreground">{data.user.email}</div>
         </div>
+      </Card>
+
+      <Card className="mb-6 border-primary/15 bg-gradient-to-br from-primary/10 via-background to-background p-5">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+              <Coins className="h-3.5 w-3.5" /> Wallet
+            </div>
+            <h2 className="mt-3 text-lg font-semibold">Coin wallet</h2>
+          </div>
+          <div className="rounded-2xl bg-card px-4 py-3 text-right shadow-sm">
+            <div className="text-xs uppercase tracking-wider text-muted-foreground">Balance</div>
+            <div className="mt-1 text-3xl font-semibold text-foreground">
+              {new Intl.NumberFormat().format(data.profile.coins_balance)}
+            </div>
+            <div className="mt-1 text-xs text-muted-foreground">coins</div>
+          </div>
+        </div>
+        <Button type="button" className="mt-4 h-11 w-full gap-2" variant="outline" disabled title="Coming soon">
+          <CreditCard className="h-4 w-4" /> Buy coins
+        </Button>
+        <p className="mt-2 text-center text-xs text-muted-foreground">
+          Coin purchases are not live yet, but this spot will be ready when they are.
+        </p>
       </Card>
 
       <form onSubmit={save} className="space-y-4">

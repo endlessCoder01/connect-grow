@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { supabase } from "@/integrations/supabase/client";
 import { Toaster } from "@/components/ui/sonner";
+import { ADSENSE_CLIENT, ADSENSE_ENABLED } from "@/lib/adsense";
 
 function NotFoundComponent() {
   return (
@@ -104,6 +105,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap",
       },
     ],
+    scripts: ADSENSE_ENABLED
+      ? [
+          {
+            src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`,
+            async: true,
+            crossOrigin: "anonymous",
+          },
+        ]
+      : [],
   }),
   shellComponent: RootShell,
   component: RootComponent,

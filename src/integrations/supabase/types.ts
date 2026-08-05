@@ -196,6 +196,327 @@ export type Database = {
           },
         ]
       }
+      game_answers: {
+        Row: {
+          answer: string | null
+          created_at: string
+          id: string
+          is_correct: boolean
+          points_earned: number
+          question_id: string
+          response_time_ms: number
+          session_id: string
+          user_id: string
+        }
+        Insert: {
+          answer?: string | null
+          created_at?: string
+          id?: string
+          is_correct?: boolean
+          points_earned?: number
+          question_id: string
+          response_time_ms?: number
+          session_id: string
+          user_id: string
+        }
+        Update: {
+          answer?: string | null
+          created_at?: string
+          id?: string
+          is_correct?: boolean
+          points_earned?: number
+          question_id?: string
+          response_time_ms?: number
+          session_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "game_answers_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "game_questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "game_answers_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "game_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      game_questions: {
+        Row: {
+          category: string
+          clues: Json
+          correct_answer: string
+          created_at: string
+          difficulty: string
+          explanation: string | null
+          game_id: string
+          id: string
+          is_active: boolean
+          options: Json
+          question: string
+          verse_reference: string | null
+        }
+        Insert: {
+          category?: string
+          clues?: Json
+          correct_answer: string
+          created_at?: string
+          difficulty?: string
+          explanation?: string | null
+          game_id: string
+          id?: string
+          is_active?: boolean
+          options?: Json
+          question: string
+          verse_reference?: string | null
+        }
+        Update: {
+          category?: string
+          clues?: Json
+          correct_answer?: string
+          created_at?: string
+          difficulty?: string
+          explanation?: string | null
+          game_id?: string
+          id?: string
+          is_active?: boolean
+          options?: Json
+          question?: string
+          verse_reference?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "game_questions_game_id_fkey"
+            columns: ["game_id"]
+            isOneToOne: false
+            referencedRelation: "games"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      game_sessions: {
+        Row: {
+          accuracy: number
+          best_streak: number
+          completed: boolean
+          completed_at: string | null
+          correct_answers: number
+          duration_seconds: number
+          game_id: string
+          id: string
+          incorrect_answers: number
+          questions_answered: number
+          score: number
+          started_at: string
+          user_id: string
+          xp_earned: number
+        }
+        Insert: {
+          accuracy?: number
+          best_streak?: number
+          completed?: boolean
+          completed_at?: string | null
+          correct_answers?: number
+          duration_seconds?: number
+          game_id: string
+          id?: string
+          incorrect_answers?: number
+          questions_answered?: number
+          score?: number
+          started_at?: string
+          user_id: string
+          xp_earned?: number
+        }
+        Update: {
+          accuracy?: number
+          best_streak?: number
+          completed?: boolean
+          completed_at?: string | null
+          correct_answers?: number
+          duration_seconds?: number
+          game_id?: string
+          id?: string
+          incorrect_answers?: number
+          questions_answered?: number
+          score?: number
+          started_at?: string
+          user_id?: string
+          xp_earned?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "game_sessions_game_id_fkey"
+            columns: ["game_id"]
+            isOneToOne: false
+            referencedRelation: "games"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      games: {
+        Row: {
+          created_at: string
+          description: string
+          difficulty_label: string
+          icon: string
+          id: string
+          is_active: boolean
+          is_coming_soon: boolean
+          name: string
+          slug: string
+          sort_order: number
+          xp_reward_label: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          difficulty_label?: string
+          icon?: string
+          id?: string
+          is_active?: boolean
+          is_coming_soon?: boolean
+          name: string
+          slug: string
+          sort_order?: number
+          xp_reward_label?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          difficulty_label?: string
+          icon?: string
+          id?: string
+          is_active?: boolean
+          is_coming_soon?: boolean
+          name?: string
+          slug?: string
+          sort_order?: number
+          xp_reward_label?: string
+        }
+        Relationships: []
+      }
+      meetings: {
+        Row: {
+          church_id: string | null
+          created_at: string
+          description: string | null
+          ends_at: string | null
+          host_id: string
+          id: string
+          meeting_url: string
+          provider: string
+          starts_at: string
+          title: string
+        }
+        Insert: {
+          church_id?: string | null
+          created_at?: string
+          description?: string | null
+          ends_at?: string | null
+          host_id: string
+          id?: string
+          meeting_url: string
+          provider?: string
+          starts_at: string
+          title: string
+        }
+        Update: {
+          church_id?: string | null
+          created_at?: string
+          description?: string | null
+          ends_at?: string | null
+          host_id?: string
+          id?: string
+          meeting_url?: string
+          provider?: string
+          starts_at?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "meetings_church_id_fkey"
+            columns: ["church_id"]
+            isOneToOne: false
+            referencedRelation: "churches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      messages: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          read_at: string | null
+          recipient_id: string
+          sender_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          read_at?: string | null
+          recipient_id: string
+          sender_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          read_at?: string | null
+          recipient_id?: string
+          sender_id?: string
+        }
+        Relationships: []
+      }
+      music_tracks: {
+        Row: {
+          artist: string | null
+          created_at: string
+          duration_seconds: number | null
+          file_name: string
+          file_size: number
+          id: string
+          mime_type: string
+          storage_path: string
+          title: string
+          updated_at: string
+          uploader_id: string
+        }
+        Insert: {
+          artist?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          file_name: string
+          file_size: number
+          id?: string
+          mime_type: string
+          storage_path: string
+          title: string
+          updated_at?: string
+          uploader_id: string
+        }
+        Update: {
+          artist?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          file_name?: string
+          file_size?: number
+          id?: string
+          mime_type?: string
+          storage_path?: string
+          title?: string
+          updated_at?: string
+          uploader_id?: string
+        }
+        Relationships: []
+      }
       prayer_requests: {
         Row: {
           body: string
@@ -270,6 +591,7 @@ export type Database = {
         Row: {
           avatar_url: string | null
           bio: string | null
+          coins_balance: number
           created_at: string
           display_name: string | null
           id: string
@@ -278,6 +600,7 @@ export type Database = {
         Insert: {
           avatar_url?: string | null
           bio?: string | null
+          coins_balance?: number
           created_at?: string
           display_name?: string | null
           id: string
@@ -286,10 +609,156 @@ export type Database = {
         Update: {
           avatar_url?: string | null
           bio?: string | null
+          coins_balance?: number
           created_at?: string
           display_name?: string | null
           id?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      reel_comments: {
+        Row: {
+          comment: string
+          created_at: string
+          id: string
+          reel_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          comment: string
+          created_at?: string
+          id?: string
+          reel_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          comment?: string
+          created_at?: string
+          id?: string
+          reel_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reel_comments_reel_id_fkey"
+            columns: ["reel_id"]
+            isOneToOne: false
+            referencedRelation: "reels"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reel_likes: {
+        Row: {
+          created_at: string
+          id: string
+          reel_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          reel_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          reel_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reel_likes_reel_id_fkey"
+            columns: ["reel_id"]
+            isOneToOne: false
+            referencedRelation: "reels"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reel_tags: {
+        Row: {
+          created_at: string
+          id: string
+          reel_id: string
+          tagged_user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          reel_id: string
+          tagged_user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          reel_id?: string
+          tagged_user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reel_tags_reel_id_fkey"
+            columns: ["reel_id"]
+            isOneToOne: false
+            referencedRelation: "reels"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reel_tags_tagged_user_id_fkey"
+            columns: ["tagged_user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reels: {
+        Row: {
+          caption: string | null
+          comment_count: number
+          created_at: string
+          duration_seconds: number
+          hashtags: string[]
+          id: string
+          like_count: number
+          status: string
+          storage_path: string
+          updated_at: string
+          user_id: string
+          view_count: number
+        }
+        Insert: {
+          caption?: string | null
+          comment_count?: number
+          created_at?: string
+          duration_seconds: number
+          hashtags?: string[]
+          id?: string
+          like_count?: number
+          status?: string
+          storage_path: string
+          updated_at?: string
+          user_id: string
+          view_count?: number
+        }
+        Update: {
+          caption?: string | null
+          comment_count?: number
+          created_at?: string
+          duration_seconds?: number
+          hashtags?: string[]
+          id?: string
+          like_count?: number
+          status?: string
+          storage_path?: string
+          updated_at?: string
+          user_id?: string
+          view_count?: number
         }
         Relationships: []
       }
@@ -361,6 +830,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      increment_reel_view: { Args: { _reel_id: string }; Returns: undefined }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"

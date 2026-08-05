@@ -17,17 +17,39 @@ import { Route as AuthenticatedBibleRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedCalendarRouteImport } from './routes/_authenticated/calendar'
 import { Route as AuthenticatedCommunityRouteImport } from './routes/_authenticated/community'
 import { Route as AuthenticatedForumRouteImport } from './routes/_authenticated/forum'
+import { Route as AuthenticatedGamesRouteImport } from './routes/_authenticated/games'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
+import { Route as AuthenticatedMusicRouteImport } from './routes/_authenticated/music'
 import { Route as AuthenticatedPrayerRouteImport } from './routes/_authenticated/prayer'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedReelsRouteImport } from './routes/_authenticated/reels'
 import { Route as AuthenticatedTestimoniesRouteImport } from './routes/_authenticated/testimonies'
+import { Route as AuthenticatedCalendarIndexRouteImport } from './routes/_authenticated/calendar.index'
 import { Route as AuthenticatedCalendarNewRouteImport } from './routes/_authenticated/calendar.new'
+import { Route as AuthenticatedChatIndexRouteImport } from './routes/_authenticated/chat/index'
+import { Route as AuthenticatedChatUserIdRouteImport } from './routes/_authenticated/chat/$userId'
+import { Route as AuthenticatedCommunityIndexRouteImport } from './routes/_authenticated/community.index'
 import { Route as AuthenticatedCommunitySlugRouteImport } from './routes/_authenticated/community.$slug'
 import { Route as AuthenticatedCommunityNewRouteImport } from './routes/_authenticated/community.new'
+import { Route as AuthenticatedForumIndexRouteImport } from './routes/_authenticated/forum.index'
 import { Route as AuthenticatedForumPostIdRouteImport } from './routes/_authenticated/forum.$postId'
 import { Route as AuthenticatedForumNewRouteImport } from './routes/_authenticated/forum.new'
+import { Route as AuthenticatedGamesIndexRouteImport } from './routes/_authenticated/games.index'
+import { Route as AuthenticatedGamesLeaderboardRouteImport } from './routes/_authenticated/games.leaderboard'
+import { Route as AuthenticatedGamesStatsRouteImport } from './routes/_authenticated/games.stats'
+import { Route as AuthenticatedMeetingsIndexRouteImport } from './routes/_authenticated/meetings/index'
+import { Route as AuthenticatedMeetingsNewRouteImport } from './routes/_authenticated/meetings/new'
+import { Route as AuthenticatedPrayerIndexRouteImport } from './routes/_authenticated/prayer.index'
 import { Route as AuthenticatedPrayerNewRouteImport } from './routes/_authenticated/prayer.new'
+import { Route as AuthenticatedReelsIndexRouteImport } from './routes/_authenticated/reels.index'
+import { Route as AuthenticatedReelsReelIdRouteImport } from './routes/_authenticated/reels.$reelId'
+import { Route as AuthenticatedReelsExploreRouteImport } from './routes/_authenticated/reels.explore'
+import { Route as AuthenticatedReelsStatsRouteImport } from './routes/_authenticated/reels.stats'
+import { Route as AuthenticatedReelsUploadRouteImport } from './routes/_authenticated/reels.upload'
+import { Route as AuthenticatedTestimoniesIndexRouteImport } from './routes/_authenticated/testimonies.index'
 import { Route as AuthenticatedTestimoniesNewRouteImport } from './routes/_authenticated/testimonies.new'
+import { Route as AuthenticatedGamesPlaySlugRouteImport } from './routes/_authenticated/games.play.$slug'
+import { Route as AuthenticatedGamesResultsSessionIdRouteImport } from './routes/_authenticated/games.results.$sessionId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -68,9 +90,19 @@ const AuthenticatedForumRoute = AuthenticatedForumRouteImport.update({
   path: '/forum',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedGamesRoute = AuthenticatedGamesRouteImport.update({
+  id: '/games',
+  path: '/games',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
   id: '/home',
   path: '/home',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMusicRoute = AuthenticatedMusicRouteImport.update({
+  id: '/music',
+  path: '/music',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedPrayerRoute = AuthenticatedPrayerRouteImport.update({
@@ -83,17 +115,44 @@ const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedReelsRoute = AuthenticatedReelsRouteImport.update({
+  id: '/reels',
+  path: '/reels',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedTestimoniesRoute =
   AuthenticatedTestimoniesRouteImport.update({
     id: '/testimonies',
     path: '/testimonies',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedCalendarIndexRoute =
+  AuthenticatedCalendarIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedCalendarRoute,
+  } as any)
 const AuthenticatedCalendarNewRoute =
   AuthenticatedCalendarNewRouteImport.update({
     id: '/new',
     path: '/new',
     getParentRoute: () => AuthenticatedCalendarRoute,
+  } as any)
+const AuthenticatedChatIndexRoute = AuthenticatedChatIndexRouteImport.update({
+  id: '/chat/',
+  path: '/chat/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedChatUserIdRoute = AuthenticatedChatUserIdRouteImport.update({
+  id: '/chat/$userId',
+  path: '/chat/$userId',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCommunityIndexRoute =
+  AuthenticatedCommunityIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedCommunityRoute,
   } as any)
 const AuthenticatedCommunitySlugRoute =
   AuthenticatedCommunitySlugRouteImport.update({
@@ -107,6 +166,11 @@ const AuthenticatedCommunityNewRoute =
     path: '/new',
     getParentRoute: () => AuthenticatedCommunityRoute,
   } as any)
+const AuthenticatedForumIndexRoute = AuthenticatedForumIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedForumRoute,
+} as any)
 const AuthenticatedForumPostIdRoute =
   AuthenticatedForumPostIdRouteImport.update({
     id: '/$postId',
@@ -118,16 +182,96 @@ const AuthenticatedForumNewRoute = AuthenticatedForumNewRouteImport.update({
   path: '/new',
   getParentRoute: () => AuthenticatedForumRoute,
 } as any)
+const AuthenticatedGamesIndexRoute = AuthenticatedGamesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedGamesRoute,
+} as any)
+const AuthenticatedGamesLeaderboardRoute =
+  AuthenticatedGamesLeaderboardRouteImport.update({
+    id: '/leaderboard',
+    path: '/leaderboard',
+    getParentRoute: () => AuthenticatedGamesRoute,
+  } as any)
+const AuthenticatedGamesStatsRoute = AuthenticatedGamesStatsRouteImport.update({
+  id: '/stats',
+  path: '/stats',
+  getParentRoute: () => AuthenticatedGamesRoute,
+} as any)
+const AuthenticatedMeetingsIndexRoute =
+  AuthenticatedMeetingsIndexRouteImport.update({
+    id: '/meetings/',
+    path: '/meetings/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMeetingsNewRoute =
+  AuthenticatedMeetingsNewRouteImport.update({
+    id: '/meetings/new',
+    path: '/meetings/new',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPrayerIndexRoute =
+  AuthenticatedPrayerIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedPrayerRoute,
+  } as any)
 const AuthenticatedPrayerNewRoute = AuthenticatedPrayerNewRouteImport.update({
   id: '/new',
   path: '/new',
   getParentRoute: () => AuthenticatedPrayerRoute,
 } as any)
+const AuthenticatedReelsIndexRoute = AuthenticatedReelsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedReelsRoute,
+} as any)
+const AuthenticatedReelsReelIdRoute =
+  AuthenticatedReelsReelIdRouteImport.update({
+    id: '/$reelId',
+    path: '/$reelId',
+    getParentRoute: () => AuthenticatedReelsRoute,
+  } as any)
+const AuthenticatedReelsExploreRoute =
+  AuthenticatedReelsExploreRouteImport.update({
+    id: '/explore',
+    path: '/explore',
+    getParentRoute: () => AuthenticatedReelsRoute,
+  } as any)
+const AuthenticatedReelsStatsRoute = AuthenticatedReelsStatsRouteImport.update({
+  id: '/stats',
+  path: '/stats',
+  getParentRoute: () => AuthenticatedReelsRoute,
+} as any)
+const AuthenticatedReelsUploadRoute =
+  AuthenticatedReelsUploadRouteImport.update({
+    id: '/upload',
+    path: '/upload',
+    getParentRoute: () => AuthenticatedReelsRoute,
+  } as any)
+const AuthenticatedTestimoniesIndexRoute =
+  AuthenticatedTestimoniesIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedTestimoniesRoute,
+  } as any)
 const AuthenticatedTestimoniesNewRoute =
   AuthenticatedTestimoniesNewRouteImport.update({
     id: '/new',
     path: '/new',
     getParentRoute: () => AuthenticatedTestimoniesRoute,
+  } as any)
+const AuthenticatedGamesPlaySlugRoute =
+  AuthenticatedGamesPlaySlugRouteImport.update({
+    id: '/play/$slug',
+    path: '/play/$slug',
+    getParentRoute: () => AuthenticatedGamesRoute,
+  } as any)
+const AuthenticatedGamesResultsSessionIdRoute =
+  AuthenticatedGamesResultsSessionIdRouteImport.update({
+    id: '/results/$sessionId',
+    path: '/results/$sessionId',
+    getParentRoute: () => AuthenticatedGamesRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -138,37 +282,74 @@ export interface FileRoutesByFullPath {
   '/calendar': typeof AuthenticatedCalendarRouteWithChildren
   '/community': typeof AuthenticatedCommunityRouteWithChildren
   '/forum': typeof AuthenticatedForumRouteWithChildren
+  '/games': typeof AuthenticatedGamesRouteWithChildren
   '/home': typeof AuthenticatedHomeRoute
+  '/music': typeof AuthenticatedMusicRoute
   '/prayer': typeof AuthenticatedPrayerRouteWithChildren
   '/profile': typeof AuthenticatedProfileRoute
+  '/reels': typeof AuthenticatedReelsRouteWithChildren
   '/testimonies': typeof AuthenticatedTestimoniesRouteWithChildren
   '/calendar/new': typeof AuthenticatedCalendarNewRoute
+  '/chat/$userId': typeof AuthenticatedChatUserIdRoute
   '/community/$slug': typeof AuthenticatedCommunitySlugRoute
   '/community/new': typeof AuthenticatedCommunityNewRoute
   '/forum/$postId': typeof AuthenticatedForumPostIdRoute
   '/forum/new': typeof AuthenticatedForumNewRoute
+  '/games/leaderboard': typeof AuthenticatedGamesLeaderboardRoute
+  '/games/stats': typeof AuthenticatedGamesStatsRoute
+  '/meetings/new': typeof AuthenticatedMeetingsNewRoute
   '/prayer/new': typeof AuthenticatedPrayerNewRoute
+  '/reels/$reelId': typeof AuthenticatedReelsReelIdRoute
+  '/reels/explore': typeof AuthenticatedReelsExploreRoute
+  '/reels/stats': typeof AuthenticatedReelsStatsRoute
+  '/reels/upload': typeof AuthenticatedReelsUploadRoute
   '/testimonies/new': typeof AuthenticatedTestimoniesNewRoute
+  '/calendar/': typeof AuthenticatedCalendarIndexRoute
+  '/chat/': typeof AuthenticatedChatIndexRoute
+  '/community/': typeof AuthenticatedCommunityIndexRoute
+  '/forum/': typeof AuthenticatedForumIndexRoute
+  '/games/': typeof AuthenticatedGamesIndexRoute
+  '/meetings/': typeof AuthenticatedMeetingsIndexRoute
+  '/prayer/': typeof AuthenticatedPrayerIndexRoute
+  '/reels/': typeof AuthenticatedReelsIndexRoute
+  '/testimonies/': typeof AuthenticatedTestimoniesIndexRoute
+  '/games/play/$slug': typeof AuthenticatedGamesPlaySlugRoute
+  '/games/results/$sessionId': typeof AuthenticatedGamesResultsSessionIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/bible': typeof AuthenticatedBibleRoute
-  '/calendar': typeof AuthenticatedCalendarRouteWithChildren
-  '/community': typeof AuthenticatedCommunityRouteWithChildren
-  '/forum': typeof AuthenticatedForumRouteWithChildren
   '/home': typeof AuthenticatedHomeRoute
-  '/prayer': typeof AuthenticatedPrayerRouteWithChildren
+  '/music': typeof AuthenticatedMusicRoute
   '/profile': typeof AuthenticatedProfileRoute
-  '/testimonies': typeof AuthenticatedTestimoniesRouteWithChildren
   '/calendar/new': typeof AuthenticatedCalendarNewRoute
+  '/chat/$userId': typeof AuthenticatedChatUserIdRoute
   '/community/$slug': typeof AuthenticatedCommunitySlugRoute
   '/community/new': typeof AuthenticatedCommunityNewRoute
   '/forum/$postId': typeof AuthenticatedForumPostIdRoute
   '/forum/new': typeof AuthenticatedForumNewRoute
+  '/games/leaderboard': typeof AuthenticatedGamesLeaderboardRoute
+  '/games/stats': typeof AuthenticatedGamesStatsRoute
+  '/meetings/new': typeof AuthenticatedMeetingsNewRoute
   '/prayer/new': typeof AuthenticatedPrayerNewRoute
+  '/reels/$reelId': typeof AuthenticatedReelsReelIdRoute
+  '/reels/explore': typeof AuthenticatedReelsExploreRoute
+  '/reels/stats': typeof AuthenticatedReelsStatsRoute
+  '/reels/upload': typeof AuthenticatedReelsUploadRoute
   '/testimonies/new': typeof AuthenticatedTestimoniesNewRoute
+  '/calendar': typeof AuthenticatedCalendarIndexRoute
+  '/chat': typeof AuthenticatedChatIndexRoute
+  '/community': typeof AuthenticatedCommunityIndexRoute
+  '/forum': typeof AuthenticatedForumIndexRoute
+  '/games': typeof AuthenticatedGamesIndexRoute
+  '/meetings': typeof AuthenticatedMeetingsIndexRoute
+  '/prayer': typeof AuthenticatedPrayerIndexRoute
+  '/reels': typeof AuthenticatedReelsIndexRoute
+  '/testimonies': typeof AuthenticatedTestimoniesIndexRoute
+  '/games/play/$slug': typeof AuthenticatedGamesPlaySlugRoute
+  '/games/results/$sessionId': typeof AuthenticatedGamesResultsSessionIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -180,17 +361,39 @@ export interface FileRoutesById {
   '/_authenticated/calendar': typeof AuthenticatedCalendarRouteWithChildren
   '/_authenticated/community': typeof AuthenticatedCommunityRouteWithChildren
   '/_authenticated/forum': typeof AuthenticatedForumRouteWithChildren
+  '/_authenticated/games': typeof AuthenticatedGamesRouteWithChildren
   '/_authenticated/home': typeof AuthenticatedHomeRoute
+  '/_authenticated/music': typeof AuthenticatedMusicRoute
   '/_authenticated/prayer': typeof AuthenticatedPrayerRouteWithChildren
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/reels': typeof AuthenticatedReelsRouteWithChildren
   '/_authenticated/testimonies': typeof AuthenticatedTestimoniesRouteWithChildren
   '/_authenticated/calendar/new': typeof AuthenticatedCalendarNewRoute
+  '/_authenticated/chat/$userId': typeof AuthenticatedChatUserIdRoute
   '/_authenticated/community/$slug': typeof AuthenticatedCommunitySlugRoute
   '/_authenticated/community/new': typeof AuthenticatedCommunityNewRoute
   '/_authenticated/forum/$postId': typeof AuthenticatedForumPostIdRoute
   '/_authenticated/forum/new': typeof AuthenticatedForumNewRoute
+  '/_authenticated/games/leaderboard': typeof AuthenticatedGamesLeaderboardRoute
+  '/_authenticated/games/stats': typeof AuthenticatedGamesStatsRoute
+  '/_authenticated/meetings/new': typeof AuthenticatedMeetingsNewRoute
   '/_authenticated/prayer/new': typeof AuthenticatedPrayerNewRoute
+  '/_authenticated/reels/$reelId': typeof AuthenticatedReelsReelIdRoute
+  '/_authenticated/reels/explore': typeof AuthenticatedReelsExploreRoute
+  '/_authenticated/reels/stats': typeof AuthenticatedReelsStatsRoute
+  '/_authenticated/reels/upload': typeof AuthenticatedReelsUploadRoute
   '/_authenticated/testimonies/new': typeof AuthenticatedTestimoniesNewRoute
+  '/_authenticated/calendar/': typeof AuthenticatedCalendarIndexRoute
+  '/_authenticated/chat/': typeof AuthenticatedChatIndexRoute
+  '/_authenticated/community/': typeof AuthenticatedCommunityIndexRoute
+  '/_authenticated/forum/': typeof AuthenticatedForumIndexRoute
+  '/_authenticated/games/': typeof AuthenticatedGamesIndexRoute
+  '/_authenticated/meetings/': typeof AuthenticatedMeetingsIndexRoute
+  '/_authenticated/prayer/': typeof AuthenticatedPrayerIndexRoute
+  '/_authenticated/reels/': typeof AuthenticatedReelsIndexRoute
+  '/_authenticated/testimonies/': typeof AuthenticatedTestimoniesIndexRoute
+  '/_authenticated/games/play/$slug': typeof AuthenticatedGamesPlaySlugRoute
+  '/_authenticated/games/results/$sessionId': typeof AuthenticatedGamesResultsSessionIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -202,37 +405,74 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/community'
     | '/forum'
+    | '/games'
     | '/home'
+    | '/music'
     | '/prayer'
     | '/profile'
+    | '/reels'
     | '/testimonies'
     | '/calendar/new'
+    | '/chat/$userId'
     | '/community/$slug'
     | '/community/new'
     | '/forum/$postId'
     | '/forum/new'
+    | '/games/leaderboard'
+    | '/games/stats'
+    | '/meetings/new'
     | '/prayer/new'
+    | '/reels/$reelId'
+    | '/reels/explore'
+    | '/reels/stats'
+    | '/reels/upload'
     | '/testimonies/new'
+    | '/calendar/'
+    | '/chat/'
+    | '/community/'
+    | '/forum/'
+    | '/games/'
+    | '/meetings/'
+    | '/prayer/'
+    | '/reels/'
+    | '/testimonies/'
+    | '/games/play/$slug'
+    | '/games/results/$sessionId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
     | '/admin'
     | '/bible'
-    | '/calendar'
-    | '/community'
-    | '/forum'
     | '/home'
-    | '/prayer'
+    | '/music'
     | '/profile'
-    | '/testimonies'
     | '/calendar/new'
+    | '/chat/$userId'
     | '/community/$slug'
     | '/community/new'
     | '/forum/$postId'
     | '/forum/new'
+    | '/games/leaderboard'
+    | '/games/stats'
+    | '/meetings/new'
     | '/prayer/new'
+    | '/reels/$reelId'
+    | '/reels/explore'
+    | '/reels/stats'
+    | '/reels/upload'
     | '/testimonies/new'
+    | '/calendar'
+    | '/chat'
+    | '/community'
+    | '/forum'
+    | '/games'
+    | '/meetings'
+    | '/prayer'
+    | '/reels'
+    | '/testimonies'
+    | '/games/play/$slug'
+    | '/games/results/$sessionId'
   id:
     | '__root__'
     | '/'
@@ -243,17 +483,39 @@ export interface FileRouteTypes {
     | '/_authenticated/calendar'
     | '/_authenticated/community'
     | '/_authenticated/forum'
+    | '/_authenticated/games'
     | '/_authenticated/home'
+    | '/_authenticated/music'
     | '/_authenticated/prayer'
     | '/_authenticated/profile'
+    | '/_authenticated/reels'
     | '/_authenticated/testimonies'
     | '/_authenticated/calendar/new'
+    | '/_authenticated/chat/$userId'
     | '/_authenticated/community/$slug'
     | '/_authenticated/community/new'
     | '/_authenticated/forum/$postId'
     | '/_authenticated/forum/new'
+    | '/_authenticated/games/leaderboard'
+    | '/_authenticated/games/stats'
+    | '/_authenticated/meetings/new'
     | '/_authenticated/prayer/new'
+    | '/_authenticated/reels/$reelId'
+    | '/_authenticated/reels/explore'
+    | '/_authenticated/reels/stats'
+    | '/_authenticated/reels/upload'
     | '/_authenticated/testimonies/new'
+    | '/_authenticated/calendar/'
+    | '/_authenticated/chat/'
+    | '/_authenticated/community/'
+    | '/_authenticated/forum/'
+    | '/_authenticated/games/'
+    | '/_authenticated/meetings/'
+    | '/_authenticated/prayer/'
+    | '/_authenticated/reels/'
+    | '/_authenticated/testimonies/'
+    | '/_authenticated/games/play/$slug'
+    | '/_authenticated/games/results/$sessionId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -320,11 +582,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedForumRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/games': {
+      id: '/_authenticated/games'
+      path: '/games'
+      fullPath: '/games'
+      preLoaderRoute: typeof AuthenticatedGamesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/home': {
       id: '/_authenticated/home'
       path: '/home'
       fullPath: '/home'
       preLoaderRoute: typeof AuthenticatedHomeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/music': {
+      id: '/_authenticated/music'
+      path: '/music'
+      fullPath: '/music'
+      preLoaderRoute: typeof AuthenticatedMusicRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/prayer': {
@@ -341,6 +617,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/reels': {
+      id: '/_authenticated/reels'
+      path: '/reels'
+      fullPath: '/reels'
+      preLoaderRoute: typeof AuthenticatedReelsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/testimonies': {
       id: '/_authenticated/testimonies'
       path: '/testimonies'
@@ -348,12 +631,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTestimoniesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/calendar/': {
+      id: '/_authenticated/calendar/'
+      path: '/'
+      fullPath: '/calendar/'
+      preLoaderRoute: typeof AuthenticatedCalendarIndexRouteImport
+      parentRoute: typeof AuthenticatedCalendarRoute
+    }
     '/_authenticated/calendar/new': {
       id: '/_authenticated/calendar/new'
       path: '/new'
       fullPath: '/calendar/new'
       preLoaderRoute: typeof AuthenticatedCalendarNewRouteImport
       parentRoute: typeof AuthenticatedCalendarRoute
+    }
+    '/_authenticated/chat/': {
+      id: '/_authenticated/chat/'
+      path: '/chat'
+      fullPath: '/chat/'
+      preLoaderRoute: typeof AuthenticatedChatIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/chat/$userId': {
+      id: '/_authenticated/chat/$userId'
+      path: '/chat/$userId'
+      fullPath: '/chat/$userId'
+      preLoaderRoute: typeof AuthenticatedChatUserIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/community/': {
+      id: '/_authenticated/community/'
+      path: '/'
+      fullPath: '/community/'
+      preLoaderRoute: typeof AuthenticatedCommunityIndexRouteImport
+      parentRoute: typeof AuthenticatedCommunityRoute
     }
     '/_authenticated/community/$slug': {
       id: '/_authenticated/community/$slug'
@@ -369,6 +680,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCommunityNewRouteImport
       parentRoute: typeof AuthenticatedCommunityRoute
     }
+    '/_authenticated/forum/': {
+      id: '/_authenticated/forum/'
+      path: '/'
+      fullPath: '/forum/'
+      preLoaderRoute: typeof AuthenticatedForumIndexRouteImport
+      parentRoute: typeof AuthenticatedForumRoute
+    }
     '/_authenticated/forum/$postId': {
       id: '/_authenticated/forum/$postId'
       path: '/$postId'
@@ -383,12 +701,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedForumNewRouteImport
       parentRoute: typeof AuthenticatedForumRoute
     }
+    '/_authenticated/games/': {
+      id: '/_authenticated/games/'
+      path: '/'
+      fullPath: '/games/'
+      preLoaderRoute: typeof AuthenticatedGamesIndexRouteImport
+      parentRoute: typeof AuthenticatedGamesRoute
+    }
+    '/_authenticated/games/leaderboard': {
+      id: '/_authenticated/games/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/games/leaderboard'
+      preLoaderRoute: typeof AuthenticatedGamesLeaderboardRouteImport
+      parentRoute: typeof AuthenticatedGamesRoute
+    }
+    '/_authenticated/games/stats': {
+      id: '/_authenticated/games/stats'
+      path: '/stats'
+      fullPath: '/games/stats'
+      preLoaderRoute: typeof AuthenticatedGamesStatsRouteImport
+      parentRoute: typeof AuthenticatedGamesRoute
+    }
+    '/_authenticated/meetings/': {
+      id: '/_authenticated/meetings/'
+      path: '/meetings'
+      fullPath: '/meetings/'
+      preLoaderRoute: typeof AuthenticatedMeetingsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/meetings/new': {
+      id: '/_authenticated/meetings/new'
+      path: '/meetings/new'
+      fullPath: '/meetings/new'
+      preLoaderRoute: typeof AuthenticatedMeetingsNewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/prayer/': {
+      id: '/_authenticated/prayer/'
+      path: '/'
+      fullPath: '/prayer/'
+      preLoaderRoute: typeof AuthenticatedPrayerIndexRouteImport
+      parentRoute: typeof AuthenticatedPrayerRoute
+    }
     '/_authenticated/prayer/new': {
       id: '/_authenticated/prayer/new'
       path: '/new'
       fullPath: '/prayer/new'
       preLoaderRoute: typeof AuthenticatedPrayerNewRouteImport
       parentRoute: typeof AuthenticatedPrayerRoute
+    }
+    '/_authenticated/reels/': {
+      id: '/_authenticated/reels/'
+      path: '/'
+      fullPath: '/reels/'
+      preLoaderRoute: typeof AuthenticatedReelsIndexRouteImport
+      parentRoute: typeof AuthenticatedReelsRoute
+    }
+    '/_authenticated/reels/$reelId': {
+      id: '/_authenticated/reels/$reelId'
+      path: '/$reelId'
+      fullPath: '/reels/$reelId'
+      preLoaderRoute: typeof AuthenticatedReelsReelIdRouteImport
+      parentRoute: typeof AuthenticatedReelsRoute
+    }
+    '/_authenticated/reels/explore': {
+      id: '/_authenticated/reels/explore'
+      path: '/explore'
+      fullPath: '/reels/explore'
+      preLoaderRoute: typeof AuthenticatedReelsExploreRouteImport
+      parentRoute: typeof AuthenticatedReelsRoute
+    }
+    '/_authenticated/reels/stats': {
+      id: '/_authenticated/reels/stats'
+      path: '/stats'
+      fullPath: '/reels/stats'
+      preLoaderRoute: typeof AuthenticatedReelsStatsRouteImport
+      parentRoute: typeof AuthenticatedReelsRoute
+    }
+    '/_authenticated/reels/upload': {
+      id: '/_authenticated/reels/upload'
+      path: '/upload'
+      fullPath: '/reels/upload'
+      preLoaderRoute: typeof AuthenticatedReelsUploadRouteImport
+      parentRoute: typeof AuthenticatedReelsRoute
+    }
+    '/_authenticated/testimonies/': {
+      id: '/_authenticated/testimonies/'
+      path: '/'
+      fullPath: '/testimonies/'
+      preLoaderRoute: typeof AuthenticatedTestimoniesIndexRouteImport
+      parentRoute: typeof AuthenticatedTestimoniesRoute
     }
     '/_authenticated/testimonies/new': {
       id: '/_authenticated/testimonies/new'
@@ -397,15 +799,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTestimoniesNewRouteImport
       parentRoute: typeof AuthenticatedTestimoniesRoute
     }
+    '/_authenticated/games/play/$slug': {
+      id: '/_authenticated/games/play/$slug'
+      path: '/play/$slug'
+      fullPath: '/games/play/$slug'
+      preLoaderRoute: typeof AuthenticatedGamesPlaySlugRouteImport
+      parentRoute: typeof AuthenticatedGamesRoute
+    }
+    '/_authenticated/games/results/$sessionId': {
+      id: '/_authenticated/games/results/$sessionId'
+      path: '/results/$sessionId'
+      fullPath: '/games/results/$sessionId'
+      preLoaderRoute: typeof AuthenticatedGamesResultsSessionIdRouteImport
+      parentRoute: typeof AuthenticatedGamesRoute
+    }
   }
 }
 
 interface AuthenticatedCalendarRouteChildren {
   AuthenticatedCalendarNewRoute: typeof AuthenticatedCalendarNewRoute
+  AuthenticatedCalendarIndexRoute: typeof AuthenticatedCalendarIndexRoute
 }
 
 const AuthenticatedCalendarRouteChildren: AuthenticatedCalendarRouteChildren = {
   AuthenticatedCalendarNewRoute: AuthenticatedCalendarNewRoute,
+  AuthenticatedCalendarIndexRoute: AuthenticatedCalendarIndexRoute,
 }
 
 const AuthenticatedCalendarRouteWithChildren =
@@ -416,12 +834,14 @@ const AuthenticatedCalendarRouteWithChildren =
 interface AuthenticatedCommunityRouteChildren {
   AuthenticatedCommunitySlugRoute: typeof AuthenticatedCommunitySlugRoute
   AuthenticatedCommunityNewRoute: typeof AuthenticatedCommunityNewRoute
+  AuthenticatedCommunityIndexRoute: typeof AuthenticatedCommunityIndexRoute
 }
 
 const AuthenticatedCommunityRouteChildren: AuthenticatedCommunityRouteChildren =
   {
     AuthenticatedCommunitySlugRoute: AuthenticatedCommunitySlugRoute,
     AuthenticatedCommunityNewRoute: AuthenticatedCommunityNewRoute,
+    AuthenticatedCommunityIndexRoute: AuthenticatedCommunityIndexRoute,
   }
 
 const AuthenticatedCommunityRouteWithChildren =
@@ -432,34 +852,79 @@ const AuthenticatedCommunityRouteWithChildren =
 interface AuthenticatedForumRouteChildren {
   AuthenticatedForumPostIdRoute: typeof AuthenticatedForumPostIdRoute
   AuthenticatedForumNewRoute: typeof AuthenticatedForumNewRoute
+  AuthenticatedForumIndexRoute: typeof AuthenticatedForumIndexRoute
 }
 
 const AuthenticatedForumRouteChildren: AuthenticatedForumRouteChildren = {
   AuthenticatedForumPostIdRoute: AuthenticatedForumPostIdRoute,
   AuthenticatedForumNewRoute: AuthenticatedForumNewRoute,
+  AuthenticatedForumIndexRoute: AuthenticatedForumIndexRoute,
 }
 
 const AuthenticatedForumRouteWithChildren =
   AuthenticatedForumRoute._addFileChildren(AuthenticatedForumRouteChildren)
 
+interface AuthenticatedGamesRouteChildren {
+  AuthenticatedGamesLeaderboardRoute: typeof AuthenticatedGamesLeaderboardRoute
+  AuthenticatedGamesStatsRoute: typeof AuthenticatedGamesStatsRoute
+  AuthenticatedGamesIndexRoute: typeof AuthenticatedGamesIndexRoute
+  AuthenticatedGamesPlaySlugRoute: typeof AuthenticatedGamesPlaySlugRoute
+  AuthenticatedGamesResultsSessionIdRoute: typeof AuthenticatedGamesResultsSessionIdRoute
+}
+
+const AuthenticatedGamesRouteChildren: AuthenticatedGamesRouteChildren = {
+  AuthenticatedGamesLeaderboardRoute: AuthenticatedGamesLeaderboardRoute,
+  AuthenticatedGamesStatsRoute: AuthenticatedGamesStatsRoute,
+  AuthenticatedGamesIndexRoute: AuthenticatedGamesIndexRoute,
+  AuthenticatedGamesPlaySlugRoute: AuthenticatedGamesPlaySlugRoute,
+  AuthenticatedGamesResultsSessionIdRoute:
+    AuthenticatedGamesResultsSessionIdRoute,
+}
+
+const AuthenticatedGamesRouteWithChildren =
+  AuthenticatedGamesRoute._addFileChildren(AuthenticatedGamesRouteChildren)
+
 interface AuthenticatedPrayerRouteChildren {
   AuthenticatedPrayerNewRoute: typeof AuthenticatedPrayerNewRoute
+  AuthenticatedPrayerIndexRoute: typeof AuthenticatedPrayerIndexRoute
 }
 
 const AuthenticatedPrayerRouteChildren: AuthenticatedPrayerRouteChildren = {
   AuthenticatedPrayerNewRoute: AuthenticatedPrayerNewRoute,
+  AuthenticatedPrayerIndexRoute: AuthenticatedPrayerIndexRoute,
 }
 
 const AuthenticatedPrayerRouteWithChildren =
   AuthenticatedPrayerRoute._addFileChildren(AuthenticatedPrayerRouteChildren)
 
+interface AuthenticatedReelsRouteChildren {
+  AuthenticatedReelsReelIdRoute: typeof AuthenticatedReelsReelIdRoute
+  AuthenticatedReelsExploreRoute: typeof AuthenticatedReelsExploreRoute
+  AuthenticatedReelsStatsRoute: typeof AuthenticatedReelsStatsRoute
+  AuthenticatedReelsUploadRoute: typeof AuthenticatedReelsUploadRoute
+  AuthenticatedReelsIndexRoute: typeof AuthenticatedReelsIndexRoute
+}
+
+const AuthenticatedReelsRouteChildren: AuthenticatedReelsRouteChildren = {
+  AuthenticatedReelsReelIdRoute: AuthenticatedReelsReelIdRoute,
+  AuthenticatedReelsExploreRoute: AuthenticatedReelsExploreRoute,
+  AuthenticatedReelsStatsRoute: AuthenticatedReelsStatsRoute,
+  AuthenticatedReelsUploadRoute: AuthenticatedReelsUploadRoute,
+  AuthenticatedReelsIndexRoute: AuthenticatedReelsIndexRoute,
+}
+
+const AuthenticatedReelsRouteWithChildren =
+  AuthenticatedReelsRoute._addFileChildren(AuthenticatedReelsRouteChildren)
+
 interface AuthenticatedTestimoniesRouteChildren {
   AuthenticatedTestimoniesNewRoute: typeof AuthenticatedTestimoniesNewRoute
+  AuthenticatedTestimoniesIndexRoute: typeof AuthenticatedTestimoniesIndexRoute
 }
 
 const AuthenticatedTestimoniesRouteChildren: AuthenticatedTestimoniesRouteChildren =
   {
     AuthenticatedTestimoniesNewRoute: AuthenticatedTestimoniesNewRoute,
+    AuthenticatedTestimoniesIndexRoute: AuthenticatedTestimoniesIndexRoute,
   }
 
 const AuthenticatedTestimoniesRouteWithChildren =
@@ -473,10 +938,17 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCalendarRoute: typeof AuthenticatedCalendarRouteWithChildren
   AuthenticatedCommunityRoute: typeof AuthenticatedCommunityRouteWithChildren
   AuthenticatedForumRoute: typeof AuthenticatedForumRouteWithChildren
+  AuthenticatedGamesRoute: typeof AuthenticatedGamesRouteWithChildren
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  AuthenticatedMusicRoute: typeof AuthenticatedMusicRoute
   AuthenticatedPrayerRoute: typeof AuthenticatedPrayerRouteWithChildren
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedReelsRoute: typeof AuthenticatedReelsRouteWithChildren
   AuthenticatedTestimoniesRoute: typeof AuthenticatedTestimoniesRouteWithChildren
+  AuthenticatedChatUserIdRoute: typeof AuthenticatedChatUserIdRoute
+  AuthenticatedMeetingsNewRoute: typeof AuthenticatedMeetingsNewRoute
+  AuthenticatedChatIndexRoute: typeof AuthenticatedChatIndexRoute
+  AuthenticatedMeetingsIndexRoute: typeof AuthenticatedMeetingsIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -485,10 +957,17 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCalendarRoute: AuthenticatedCalendarRouteWithChildren,
   AuthenticatedCommunityRoute: AuthenticatedCommunityRouteWithChildren,
   AuthenticatedForumRoute: AuthenticatedForumRouteWithChildren,
+  AuthenticatedGamesRoute: AuthenticatedGamesRouteWithChildren,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
+  AuthenticatedMusicRoute: AuthenticatedMusicRoute,
   AuthenticatedPrayerRoute: AuthenticatedPrayerRouteWithChildren,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedReelsRoute: AuthenticatedReelsRouteWithChildren,
   AuthenticatedTestimoniesRoute: AuthenticatedTestimoniesRouteWithChildren,
+  AuthenticatedChatUserIdRoute: AuthenticatedChatUserIdRoute,
+  AuthenticatedMeetingsNewRoute: AuthenticatedMeetingsNewRoute,
+  AuthenticatedChatIndexRoute: AuthenticatedChatIndexRoute,
+  AuthenticatedMeetingsIndexRoute: AuthenticatedMeetingsIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -502,3 +981,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

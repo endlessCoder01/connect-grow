@@ -6,8 +6,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { PageHeader } from "@/components/PageHeader";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Heart, MessageCircle, Users, MessageSquare, CalendarDays } from "lucide-react";
+import { Heart, MessageCircle, Users, MessageSquare, CalendarDays, Video, Send } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
+import { AdSlot } from "@/components/AdSlot";
+import { AD_SLOTS } from "@/lib/adsense";
 
 const verseQuery = queryOptions({
   queryKey: ["verse-of-day"],
@@ -85,6 +87,23 @@ function HomePage() {
             <div className="text-xs text-muted-foreground">Upcoming events</div>
           </div>
         </Link>
+        <Link to="/meetings" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition hover:border-primary/40">
+          <Video className="h-5 w-5 text-primary" />
+          <div>
+            <div className="text-sm font-semibold">Meetings</div>
+            <div className="text-xs text-muted-foreground">Zoom & Meet</div>
+          </div>
+        </Link>
+        <Link to="/chat" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition hover:border-primary/40">
+          <Send className="h-5 w-5 text-primary" />
+          <div>
+            <div className="text-sm font-semibold">Messages</div>
+            <div className="text-xs text-muted-foreground">Private chat</div>
+          </div>
+        </Link>
+      </div>
+      <div className="mt-6 px-5">
+        <AdSlot slot={AD_SLOTS.homeFeed} className="min-h-[90px]" />
       </div>
       <Suspense fallback={<div className="px-5"><Skeleton className="h-40 w-full" /></div>}>
         <Feed />

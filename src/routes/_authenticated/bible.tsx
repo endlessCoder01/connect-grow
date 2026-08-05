@@ -41,7 +41,7 @@ function BiblePage() {
   function setSearch(patch: { book?: string; chapter?: number }) {
     navigate({
       to: "/bible",
-      search: (prev: { book: string; chapter: number }) => ({ ...prev, ...patch }),
+      search: { book, chapter, ...patch },
     });
   }
 
